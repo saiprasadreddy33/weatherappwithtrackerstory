@@ -1,0 +1,35 @@
+.user-stories {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-stories textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .user-stories button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .user-stories button:hover {
+    background-color: #2980b9;
+  }
+  
+  .user-stories ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .user-stories li {
+    margin-bottom: 5px;
+  }
+  

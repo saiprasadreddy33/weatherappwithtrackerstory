@@ -1,0 +1,160 @@
+.home-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    animation: fadeIn 1s ease;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-right: 10px;
+  }
+  
+  .weather-icon {
+    font-size: 2rem;
+  }
+  
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .widget {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .widget:hover {
+    transform: translateY(-5px);
+  }
+
+.weather-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .location {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .localtime {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .weather-data {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .weather-data li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .weather-icon {
+    height: 25px;
+    width: 25px;
+    background-position: center center;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+  }
+  
+  .weather_description {
+    font-weight: bold;
+  }
+  
+  .current-temperature {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .bold-before-colon {
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .main {
+      width: 90%;
+      margin: 50px auto;
+    }
+  
+    .left {
+      padding: 10px;
+    }
+  
+    .right {
+      margin-top: 20px;
+    }
+  
+    .left-img {
+      width: 40px;
+    }
+  
+    .right-img {
+      width: 120px;
+    }
+  
+    .date {
+      font-size: 12px;
+    }
+  
+    .city {
+      font-size: 18px;
+    }
+  
+    .temperature-section {
+      padding-top: 5px;
+      font-size: 48px;
+    }
+  
+    .temperature {
+      font-size: 24px;
+      padding-left: 8px;
+      padding-top: 6px;
+    }
+  
+    .details {
+      font-size: 14px;
+    }
+  }
+  
