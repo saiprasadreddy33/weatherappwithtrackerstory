@@ -32,14 +32,14 @@ const CurrentWeather = () => {
 
   useEffect(() => {
     const updateLocalTime = () => {
-      if (weather && weather.timezone) {
+      if (weather && weather.timezone !== undefined) {
         const localTime = new Date(Date.now() + weather.timezone * 1000);
-        setLocalTime(localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+        setLocalTime(localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
       }
     };
 
     updateLocalTime();
-    const timeIntervalId = setInterval(updateLocalTime, 60000); // Update every minute
+    const timeIntervalId = setInterval(updateLocalTime, 1000); // Update every second
 
     return () => clearInterval(timeIntervalId);
   }, [weather]);
