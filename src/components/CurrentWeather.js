@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiThunderstorm } from 'react-icons/wi';
+import { FaTimes } from 'react-icons/fa';
 import './CurrentWeather.css';
 
 const CurrentWeather = () => {
   const [weather, setWeather] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('Chennai');
-  const [suggestions, setSuggestions] = useState(['Hyderabad', 'Mumbai', 'Delhi', 'Bangalore']);
+  const [searchQuery, setSearchQuery] = useState('Hyderabad');
+  const [suggestions, setSuggestions] = useState(['Chennai', 'Mumbai', 'Delhi', 'Bangalore']);
   const [error, setError] = useState('');
   const [localTime, setLocalTime] = useState('');
 
@@ -25,7 +26,7 @@ const CurrentWeather = () => {
     };
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 600000); // Fetch every 10 minutes
+    const intervalId = setInterval(fetchWeather, 600000);
 
     return () => clearInterval(intervalId);
   }, [searchQuery]);
@@ -33,13 +34,13 @@ const CurrentWeather = () => {
   useEffect(() => {
     const updateLocalTime = () => {
       if (weather && weather.timezone !== undefined) {
-        const localTime = new Date(Date.now() + weather.timezone * 1000);
-        setLocalTime(localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+        const localTime = new Date(Date.now() + weather.timezone * 1000 - 5.5 * 3600 * 1000);
+        setLocalTime(localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',day:"numeric",month : 'long', year:'numeric'}));
       }
     };
 
     updateLocalTime();
-    const timeIntervalId = setInterval(updateLocalTime, 1000); // Update every second
+    const timeIntervalId = setInterval(updateLocalTime, 1000);
 
     return () => clearInterval(timeIntervalId);
   }, [weather]);
@@ -50,6 +51,10 @@ const CurrentWeather = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
+  };
+
+  const clearInput = () => {
+    setSearchQuery('');
   };
 
   const getWeatherIcon = (weatherCode) => {
@@ -84,6 +89,9 @@ const CurrentWeather = () => {
           value={searchQuery}
           onChange={handleInputChange}
         />
+        {searchQuery && (
+          <FaTimes className="clear-icon" onClick={clearInput} />
+        )}
         <button className="search-button" onClick={() => setSearchQuery(searchQuery)}>
           Search
         </button>
@@ -101,17 +109,17 @@ const CurrentWeather = () => {
       </div>
       {error && <p className="error-message">{error}</p>}
       {weather ? (
-        <div>
-          <p>{weather.name}</p>
+        <div className="weather-info">
+          <p className="city-name">{weather.name}</p>
           <div className="weather-details">
-            <div>
-              <p>{weather.main.temp}°C</p>
-              <p>{weather.weather[0].description}</p>
-              <p>Humidity: {weather.main.humidity}%</p>
-              <p>Wind Speed: {weather.wind.speed} m/s</p>
-              <p>Sunrise: {formatTime(weather.sys.sunrise)}</p>
-              <p>Sunset: {formatTime(weather.sys.sunset)}</p>
-              <p>Local Time: {localTime}</p>
+            <div className="details-left">
+              <p className="temperature">{weather.main.temp}°C</p>
+              <p className="description">{weather.weather[0].description}</p>
+              <p className="humidity">Humidity: {weather.main.humidity}%</p>
+              <p className="wind-speed">Wind Speed: {weather.wind.speed} m/s</p>
+              <p className="sunrise">Sunrise: {formatTime(weather.sys.sunrise)}</p>
+              <p className="sunset">Sunset: {formatTime(weather.sys.sunset)}</p>
+              <p className="local-time">Local Time: {localTime}</p>
             </div>
             <div className="weather-icon">{getWeatherIcon(weather.weather[0].main)}</div>
           </div>
