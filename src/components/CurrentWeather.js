@@ -51,6 +51,7 @@ const CurrentWeather = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
+    console.log(setSuggestions)
   };
 
   const clearInput = () => {
